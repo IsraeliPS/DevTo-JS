@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEV Community 👩‍💻👨‍💻</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
+    <script src="https://kit.fontawesome.com/08983b0b1f.js" crossorigin="anonymous" ></script>
+
+    <!-- w3 icons   -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <main class="container">
+        <div class="row">
+            <!-- ***********************************************************************barra superior -->
+            <nav class=" border-4 border-bottom mb-1 sticky navbar-light">
+                <div class="container ">
+                <div class="row">
+                    <div class="nav col-1 col-md-5 col-lg-6 justify-content-sm-start justify-content-start align-items-center flex-nowrap">
+                        <button onclick="openNav()" class="openbtn d-sm-block d-md-none mt-3" role="button">
+                        <span class="navbar-toggler-icon ml-1"></span>
+                        </button>
+                        <a href="#">
+                        <img class="img-navbar rounded mt-2" id="logo" src="https://res.cloudinary.com/practicaldev/image/fetch/s--R9qwOwpC--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/78hs31fax49uwy6kbxyw.png">
+                        </a>
+                        <form class="form-block d-none d-md-block col-md-11 col-lg-12 m-2">
+                        <input class="form-control mr-sm-0 rounded" type="search" placeholder="Search..." aria-label="Search">
+                        </form>
+                    </div>
+                    <div class="nav col-11 col-md-6 col-lg-6 justify-content-sm-end justify-content-end align-items-center flex-nowrap">
+                        
+                        <a class="nav-link active" href="#">
+                        <button class="btn btn-primary d-none d-md-block">
+                            Create Post
+                        </button>
+                        </a>
+                        
+                        <a class="img-navbar nav-link active d-sm-block d-md-none" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="am5xgxbuqw56tbq737km7b08qq2ooxet" class="crayons-icon"><title id="am5xgxbuqw56tbq737km7b08qq2ooxet">Search</title>
+                        <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path>
+                        </svg></a>
+
+                        <a class="img-navbar nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="arbj5z9x35iumprgat89iw4sn2p8xegt" class="crayons-icon"><title id="arbj5z9x35iumprgat89iw4sn2p8xegt">Connect</title>
+                        <path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10H2l2.929-2.929A9.969 9.969 0 012 12zm4.828 8H12a8 8 0 10-8-8c0 2.152.851 4.165 2.343 5.657l1.414 1.414-.929.929zM8 13h8a4 4 0 11-8 0z"></path>
+                        </svg></a>
+                        <a class="img-navbar nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="ao3y3xgpkysd15o5veb3dcbucy9ie2lx" class="crayons-icon"><title id="ao3y3xgpkysd15o5veb3dcbucy9ie2lx">Notifications</title>
+                        <path d="M20 17h2v2H2v-2h2v-7a8 8 0 1116 0v7zm-2 0v-7a6 6 0 10-12 0v7h12zm-9 4h6v2H9v-2z"></path>
+                        </svg></a>
+                        <a class="img-navbar nav-link" href="#"><img id="avatar" class="rounded-circle" src="https://res.cloudinary.com/practicaldev/image/fetch/s--R9qwOwpC--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/78hs31fax49uwy6kbxyw.png"></a>
+                    </div>
+                </div>
+                </div>
+            </nav>
+            <!-- **********************************************************************************termina barra superior -->
+
+            <!-- ********************************************************************************menu izquierdo Hamburguesa-->
+            <div id="mySidebar" class="sidebar">
+    <div id="sidebar-header">
+      <a class="navbar-header border-4 border-bottom" href="#"><h4>Dev Community</h4></a>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    </div>
+    <h3>DEV community</h3>
+          <ul class="lista">
+            <li> &#127968; Home</li>
+            <li> &#128451;&#65039; Reading list</li>
+            <li> &#129534; Listings</li>
+            <li> &#127897;&#65039; Podcasts</li>
+            <li> &#128253;&#65039; Videos</li>
+            <li> &#128466;&#65039; Tags</li>
+            <li> &#128161; FAQ</li>
+            <li> &#128717;&#65039; DEV Shop</li>
+            <li> &#10084;&#65039; Sponsors</li>
+            <li> &#128187; About</li>
+            <li> &#128239;  Contact</li>
+          </ul>
+          <h3>Other</h3>
+          <ul class="lista">
+            <li> &#128077; Code of conduct</li>
+            <li> &#129299; Privacy Policy</li>
+            <li> &#128064; Terms of use</li>
+          </ul> 
+          <div class="social-media-icons">
+            <img src="https://www.begreenchica.com/wp-content/uploads/2016/05/icono-twitter.png" alt="">
+            <img src="https://gaiadivers.mx/wp-content/uploads/2019/04/Icono-facebook-Sotodrone.png" alt="">
+            <img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-grise.png" alt="">
+            <img src="https://icones.pro/wp-content/uploads/2021/02/instagram-icone-gris.png" alt="">
+            <img src="https://icones.pro/wp-content/uploads/2021/05/symbole-twitch-logo-icone-gris.png" alt="">
+          </div>
+          <div class=myTag>
+            <p><b>My Tags</b></p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="crayons-icon">
+              <path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342 7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"></path>
+            </svg>
+          </div>
+            </div>
+            <!-- ********************************************************************************termina menu izquierdo Hamburguesa-->
+
+            <!-- **********************************************************menu izquierdo -->
+            <aside class="col-md-3 col-lg-2 d-none d-md-block">
+                <!-- Lateral Izquierdo -->
+                <!--First listing-->
+                <ul class="list-group my-3 list-group-flush">
+                    <h6><b> Dev Community</b></h6>
+
+                    <li class="list-group-item border-0">
+                    <a href="https://dev.to/"></a>
+                    <img src="images/home.png" alt="home" /> Home
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/reading.png" alt="rlist" /> Reading List
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/listing.png" alt="listings" />Listings
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/podcast.png" alt="podcasts" />Podcast
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/videos.png" alt="videos" />Videos
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/tags.png" alt="tags" />Tags
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/faq.png" alt="faq" />FAQ
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/devshop.png" alt="shop" />Dev Shop
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/sponsors.png" alt="sponsors" />Sponsors
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/about.png" alt="about" />About
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/contact.png" alt="Contact" />Contact
+                    </li>
+                </ul>
+
+                <!--Second listing-->
+                <ul class="list-group mb-3 list-group-flush">
+                    <h6><b> Other</b></h6>
+                    <li class="list-group-item border-0">
+                    <img src="images/code.png" alt="conduct" /> Code of conduct
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/privacy.png" alt="policy" />Privacy Policy
+                    </li>
+                    <li class="list-group-item border-0">
+                    <img src="images/terms.png" alt="terms" />Terms of use
+                    </li>
+                </ul>
+
+                <!--social media-->
+                <div class="d-flex justify-content-evenly mb-4">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-twitter"></i>
+                    <i class="bi-github" role="img" aria-label="GitHub"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitch"></i>
+                </div>
+                <!--end social media-->
+
+                <!--Tags-->
+                <ul class="list-group list-group-flush mb-3">
+                    <h6><b>My Tags</b></h6>
+                    <li class="list-group-item border-0">#Javascript</li>
+                    <li class="list-group-item border-0">#WebDev</li>
+                    <li class="list-group-item border-0">#CSS</li>
+                    <li class="list-group-item border-0">#SQL</li>
+                    <li class="list-group-item border-0">#Algorithms</li>
+                </ul>
+                <!--end tags-->
+                
+            </aside>
+            <!-- **********************************************************termina menu izquierdo -->
+
+            <!-- **********************************************************principal de Posts -->
+            <div class="col-12 col-md-9 col-lg-7">
+                <!-- ****************************************************************************menu superior de los posts -->
+                <div class="d-none d-sm-block">
+                    <div class="d-flex justify-content-center">
+                    <div class="crece m-2 p-2"><strong> Post </strong> </div>
+                    <div class="navbox bottom-line m-2 p-2">Feed</div>
+                    <div class="navbox m-2 p-2">Week</div>
+                    <div class="navbox m-2 p-2">Month</div>
+                    <div class="navbox m-2 p-2">Year</div>
+                    <div class="navbox m-2 p-2">Infinity</div>
+                    <div class="navbox m-2 p-2">Latest</div>
+                    </div>
+                </div>
+
+                <div class="container j_container_principal mt-3">
+                    <div class="row">
+                        <div  class="card j_primer_post my-2">
+                            <img class="card-img-top col-12 p-2"
+                                src="https://res.cloudinary.com/practicaldev/image/fetch/s--lSkD28fy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1k4vkpo8vtj6vljpmtu7.jpg"
+                                alt="Post_image_top">
+                            <div class="container p-2 my-2">
+                                <div class="row">
+                                    <img class="col-2 rounded-pill" src="https://res.cloudinary.com/practicaldev/image/fetch/s--a7qicupw--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/389568/4495a4a0-202f-4c66-8cec-003bbf8dc66d.jpg" alt="avatar">
+                                    <div class="col-8">
+                                        <h5 class="card-title j_author ">
+
+                                            Suhail Shaikh
+                                        </h5>
+
+                                        <h6 class="card-subtitle mb-2 text-muted j_fecha">Aug 19 (1 day ago)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <h3 class="col-12">
+                                        <a href="index_post.html">ReactJs Roadmap🗺 for beginners - 2021</a>
+                                    </h3>
+                                    <span class="col-3 j_tags"> #react</span>
+                                    <span class="col-3 j_tags"> #javascript</span>
+                                    <span class="col-3 j_tags"> #webdev</span>
+                                    <span class="col-3 j_tags"> #beginners</span>
+
+
+                                </div>
+                                <div class="row j_button_section">
+                                    <div class="col-6">
+                                        <span class="reactions">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                            </svg>
+                                            436 reactions
+                                        </span>
+                                        <span class="comments">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chat-right" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z" />
+                                            </svg>
+                                            18 comments
+                                        </span>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-end">
+                                            4 min read
+                                            <button type="button" class="btn btn-secondary">
+                                                Save
+                                            </button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container j_container_principal">
+                    <div class="row">
+                        <div class="card j_primer_post">
+                            <div class="container">
+                                <div class="row">
+                                    <img class="col-2 rounded-pill" src="https://res.cloudinary.com/practicaldev/image/fetch/s--a7qicupw--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/389568/4495a4a0-202f-4c66-8cec-003bbf8dc66d.jpg" alt="avatar">
+                                    <div class="col-8">
+                                        <h5 class="card-title j_author ">
+
+                                            Suhail Shaikh
+                                        </h5>
+
+                                        <h6 class="card-subtitle mb-2 text-muted j_fecha">Aug 19 (1 day ago)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <h3 class="col-12">
+                                        <a href="index_post.html">ReactJs Roadmap🗺 for beginners - 2021</a>
+                                    </h3>
+                                    <span class="col-3 j_tags"> #react</span>
+                                    <span class="col-3 j_tags"> #javascript</span>
+                                    <span class="col-3 j_tags"> #webdev</span>
+                                    <span class="col-3 j_tags"> #beginners</span>
+
+
+                                </div>
+                                <div class="row j_button_section">
+                                    <div class="col-6">
+                                        <span class="reactions">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                            </svg>
+                                            436 reactions
+                                        </span>
+                                        <span class="comments">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-chat-right" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z" />
+                                            </svg>
+                                            18 comments
+                                        </span>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="text-end">
+                                            4 min read
+                                            <button type="button" class="btn btn-secondary">
+                                                Save
+                                            </button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+            <!-- **********************************************************termina principal de posts -->
+            
+            <!-- **********************************************************menu derecho  -->
+            <aside class="col-lg-3 d-none d-lg-block">
+                <div class="d-flex justify-content-evenly">
+                    <div class="col-1">
+                        <img src="images/DevNews.jpeg" alt="News" style="width: 70px" />
+                    </div>
+                    <div class="col-11">
+                        <h5><b>Tune in to DevNews</b></h5>
+                        <p>
+                        S5E5: DeepMind’s XLand, Android 12 Beta’s Camera Switches, a
+                        Colorism Issue With Face Filters, & more on DevNews!
+                        </p>
+                    </div>
+                </div>
+                    <!--end first card-->
+
+                    <!--second card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>Listings</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        Vue Developer for Startup - Full Time, 100% REMOTE (LATAM)
+                        </li>
+                        <li class="list-group-item">
+                        Chingu - Get Out of Tutorial Purgatory!
+                        </li>
+                        <li class="list-group-item">
+                        Walkthrough Wednesday with Laurie Barth
+                        </li>
+                        <li class="list-group-item">
+                        Secrets to get more interviews, offers, and negotiate at least
+                        $10k more. Or your money back.
+                        </li>
+                        <li class="list-group-item">
+                        Ruby on Rails Developer - Full-Time, Remote
+                        </li>
+                    </ul>
+                    <div class="card-footer text-align-center">Create a Listing</div>
+                </div>
+                    <!--end second card-->
+
+                    <!--third card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>#news</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        Game Dev Digesr - Issue #107 - Parkour! (and More)
+                        <div class="new">
+                            <span class="badge bg-primary bg-group-small">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        DeepMind's XLand, Android 12 Beta's Camera Switches, a
+                        Colaborism Issue With Face Filters, & more on DevNews!
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        Why Apple Is One of the Largest Customers of Its Competitor
+                        Amazon
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        How to configure AWS news RSS feed Microsfot Teams
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                    <!--end third card-->
+
+                    <!--fourth card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>#help</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        Incorrect Current Location On Chrome Desktop
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                    <!--end fourth card-->
+
+                    <!--fifth card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>#discuss</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        Is HTML a prgramming language? I finally get to the bottom of
+                        it.
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        August 20th, 2021: What did you learn this week?
+                        </li>
+                        <li class="list-group-item">
+                        A great campaing on inclusion :), a terrible website that
+                        causes exclusion :(, #WeThe15
+                        </li>
+                        <li class="list-group-item">
+                        What do you want to knwo about how Facebook builds software?
+                        Answer to be featured on our podcast
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">What makes a 10x engineer?</li>
+                    </ul>
+                </div>
+                    <!--end fifth card-->
+
+                    <!--sixth card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>#explainlikeimfive</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        Explain Quantum Computers like i'm five
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                    <!--end sixth card-->
+
+                    <!--seventh card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>#challenge</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        JS13K: My first day (Day 7)
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        The Dungeon (A sidescroller game)
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        JS13K: My first day (Day 6)
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        Jfrog Docker Challenge
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        JS13K: My first day (Day 5)
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--end seventh card-->
+
+                <!--eight card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>#meta</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">Markdown Linting</li>
+                        <li class="list-group-item">
+                        I am writing an e-book about Google searching. What would you
+                        hope to learn in such an e-book?
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--end eight card-->
+
+                <!--ninth card-->
+                <div class="card mb-3">
+                    <div class="card-header"><b>#watercooler</b></div>
+                    <ul class="list-group">
+                        <li class="list-group-item">Why good developers write</li>
+                        <li class="list-group-item">
+                        8 Best Apps to Learn Coding
+                        <div class="new">
+                            <span class="badge bg-primary">New</span>
+                        </div>
+                        </li>
+                        <li class="list-group-item">
+                        What tools do you guys use for managing your task/goals
+                        </li>
+                    </ul>
+                </div>
+                    <!--end ninth card-->
+                
+            </aside>
+            <!-- **********************************************************termina menu derecho -->
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

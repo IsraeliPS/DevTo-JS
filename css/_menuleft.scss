@@ -1,0 +1,62 @@
+#aside-left {
+    @include center-item();
+    flex-direction: column;
+    width: 235px;
+    min-width: 235px;
+    background-color: #FFF;
+    display:none;
+    font-size: 16px;
+    background-color: transparent;
+    border-radius: 3px;
+    h3{
+    margin: 0;
+    }
+}
+
+
+.myTag{
+    width: 150px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &svg:hover{
+    fill:rgba(0,0,0,0.45);
+    }
+}
+
+.lista{
+    list-style: none;
+    padding-left: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:stretch;
+    
+    li{
+    cursor: pointer;
+    margin: 5px 10px;
+    width: 150px;
+    padding: 5px 0;
+    // background-color: brown;
+    border-radius: 3px;
+    
+    &:hover{
+        background-color: rgba(8, 9, 10, 0.05);
+    }
+    }
+}
+
+    // se debe cambiar el nombre ya que tiene conflicto con el menu derecho
+.social-media-icons{
+    display: flex;
+    justify-content: space-between;
+    img{
+        padding: 0 15px;
+        width: 25px;
+        padding: 0 5px;
+            &:hover{
+                fill:rgba(0,0,0,0.45); 
+            }
+    }  
+}

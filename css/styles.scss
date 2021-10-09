@@ -1,0 +1,20 @@
+@mixin center-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@import 'navbar';
+@import 'colores';
+@import 'menuleft';
+// @import 'laterales_pp';
+// @import 'central_ps';
+// @import 'laterales_ps';
+// @import 'central_pp';
+// @import 'nav_foot';
+// @import 'recycle';
+// @import 'menuleft';
+body{
+    max-width: 1440px;
+    margin: 0 auto;
+}
