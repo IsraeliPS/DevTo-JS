@@ -167,6 +167,17 @@ COLORES
   fill: rgba(0, 0, 0, 0.45);
 }
 
+/*************
+COLORES 
+*****************/
+.create-post-inner {
+  background-color: #EEF0F1;
+}
+
+li {
+  list-style: none;
+}
+
 body {
   max-width: 1440px;
   margin: 0 auto;
