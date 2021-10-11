@@ -112,7 +112,7 @@ function printPost(){
                             h3Title.appendChild(aTitle)
                         hashtags.forEach(item=>{
                             let name=createNode("span",`#${item}`)
-                            name.classList.add("col-3")
+                            name.classList.add("col-3", "text-center")
                             divRowTitle.appendChild(name)
                         })
 
