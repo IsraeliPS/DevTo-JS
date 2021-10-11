@@ -178,6 +178,11 @@ li {
   list-style: none;
 }
 
+.hashtagsPosts {
+  color: #64707D;
+  font-size: 12px;
+}
+
 body {
   max-width: 1440px;
   margin: 0 auto;
