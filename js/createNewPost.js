@@ -43,9 +43,9 @@ function preCargarPost(){
     
 
     //**********************************************carga los hashtagas seleccionados
-    let hash=$("#hashtagsSelected .hashValue")
+    let hash=$(".hashValue")
     
-    if (Object.keys(hash).length > 2){
+    if (Object.keys(hash).length >2){
         for (const ts of hash){
             let txt=ts.textContent
             valHash={...valHash,[cont]:txt}
@@ -71,6 +71,7 @@ function preCargarPost(){
         }
         else
             val++
+        cont++
     }
     
     //**********************************************carga usuario, cometarios y likes
@@ -80,7 +81,8 @@ function preCargarPost(){
         user_id:"homero.github"
     }
     objectPost={...objectPost,"usuario":usuario,"coments":0,"likes":0}
-    
+    console.log("objeto a mostrar",objectPost)
+    console.log("valor contador",val)
     val>0?alert("Todos los campos son requeridos"):createPost(objectPost)
 }
 
@@ -178,4 +180,16 @@ function cargaHashtags(){
 $("#publish-button").click(()=>preCargarPost())
 
 $("#tag-input").focus(()=>cargaHashtags())
+
+$("#tag-input").change(function(){
+    let tTable = $("#hashtagsSelected")
+    let valor=$("#tag-input").val()
+    
+    let tdRow=createNode("td",valor)
+    tdRow.classList.add("hashValue", "mr-3")
+    $(tTable).append(tdRow)
+    $("#tag-input").val("")
+})
+
+
 

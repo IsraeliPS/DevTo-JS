@@ -83,7 +83,11 @@ function printPost(){
                             divRowTitle.appendChild(name)
                         })
                 divTitle.appendChild(divRowTitle)
-            
+                
+                let divText=createNode("div",)
+                divText.classList.add("container")
+
+
         divCard.appendChild(divUser)
         divCard.appendChild(divTitle)
 
@@ -91,7 +95,3 @@ function printPost(){
     tBody.appendChild(divRow)
         cont++
 }
-
-{/*
-
-*/}
