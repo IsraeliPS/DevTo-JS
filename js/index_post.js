@@ -155,25 +155,17 @@ function printPost() {
 
 printPost();
 
-/****************************************************************CODIGO OSCAR ********************************************************************** */
-
 // Agregar likes al post - PATCH
-function addToReactionCount(postObject) {
+const addToReactionCount = (reactionPost, newCount) => {
+  console.log(reactionPost, newCount);
   $.ajax({
     method: "PATCH",
-    url: "https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/likes.json",
-    data: JSON.stringify(postObject),
-    success: (response) => {
-      response = response;
-      console.log(response);
-    },
-    error: (error) => {
-      console.log(error);
-    },
-    async: false,
+    url: `https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/${reactionPost}.json`,
+    data: JSON.stringify(newCount),
+    success: (response) => {},
+    error: (error) => {},
   });
-  return response;
-}
+};
 
 //Boton de reacciones
 
@@ -185,9 +177,15 @@ let likeButton = document.getElementById("reactions-btn");
 let likeCount = 0;
 
 likeButton.addEventListener("click", () => {
+  let { likes, id } = value;
+  likeCount += parseInt(likes);
+  console.log("contador", likeCount);
   console.log("click");
   likeCount++;
   counter.textContent = likeCount;
+  value.likes = parseInt(likeCount);
+  addToReactionCount(id, value);
+  likeCount = 0;
 });
 
 // Increase Star
