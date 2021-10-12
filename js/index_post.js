@@ -1,6 +1,6 @@
-var data = localStorage.getItem("post");
-localStorage.clear(); //clean the localstorage
-var value = JSON.parse(data)
+let data = localStorage.getItem("post")
+localStorage.clear() //clean the localstorage
+let value = JSON.parse(data)
 
 function createNode(typeElement, text){
     let node = document.createElement(typeElement)

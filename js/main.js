@@ -106,8 +106,8 @@ function printPost(){
                         h3Title.classList.add("col-12")
 
                             let aTitle=createNode("a",title)
-                            aTitle.href="index_post.html" /*buscar como mandar datos entre paginas*/
-                            localStorage.setItem("post",JSON.stringify(post))
+                            aTitle.onclick=()=>{saveData(post)}
+                            aTitle.href="index_post.html" 
                         
                             h3Title.appendChild(aTitle)
                         hashtags.forEach(item=>{
@@ -167,12 +167,24 @@ function printPost(){
                     divRowReactions.appendChild(divReactions)
                         let divButton=document.createElement("div")
                         divButton.classList.add("col-6", "d-flex","flex-row","justify-content-around")
-                            let pButton=createNode("p","min read")
-                            divButton.appendChild(pButton)
+                            
+                            let aUpdate=document.createElement("a")
+                                let buttonUpdate=createNode("button","Modificar")
+                                buttonUpdate.classList.add("btn","btn-warning")
+                                
+                                buttonUpdate.onclick=()=>{saveData(post)}
 
-                            let buttonSave=createNode("button","Save")
-                            buttonSave.classList.add("btn","btn-secondary")
-                            divButton.appendChild(buttonSave)
+                            aUpdate.href="index_post.html" 
+                            localStorage.setItem("post",JSON.stringify(post))
+                            aUpdate.appendChild(buttonUpdate)
+                        divButton.appendChild(aUpdate)
+
+                            let buttonDelete=createNode("button","Eliminar")
+                            buttonDelete.classList.add("btn","btn-danger")
+                            buttonDelete.onclick=()=>removePost(id,post)
+
+                            divButton.appendChild(buttonDelete)
+                            
                     divRowReactions.appendChild(divButton)
                 divTitle.appendChild(divRowTitle)
                 divTitle.appendChild(divRowReactions)
@@ -184,6 +196,12 @@ function printPost(){
         tBody.appendChild(divRow)
         cont++
     })
+}
+
+function saveData(objectPost){
+    console.log(objectPost)
+    localStorage.clear()
+    localStorage.setItem("post",JSON.stringify(objectPost))
 }
 
 printPost()
