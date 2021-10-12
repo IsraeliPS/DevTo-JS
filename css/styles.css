@@ -167,6 +167,22 @@ COLORES
   fill: rgba(0, 0, 0, 0.45);
 }
 
+/*************
+COLORES 
+*****************/
+.create-post-inner {
+  background-color: #EEF0F1;
+}
+
+li {
+  list-style: none;
+}
+
+.hashtagsPosts {
+  color: #64707D;
+  font-size: 12px;
+}
+
 body {
   max-width: 1440px;
   margin: 0 auto;
