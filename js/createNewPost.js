@@ -1,25 +1,101 @@
-//apoyo para crear nuevos posts
-let newObject={
-    coments:"18",
-    cover_image:"https://images.party-city.es/images/link/19_BALL1154ar_097_L2.jpg",
-    data_created:"02-11-2021",
-    hashtags:[
-        "javascript",
-        "css"
-    ],
-    likes:5,
-    post_text:"algo mas deberia ir aqui",
-    title:"El uso del html en el bootcamp",
-    usuario:{
-        img:"https://3.bp.blogspot.com/-JfL1o7oSnKI/VmodObHF9cI/AAAAAAAABLY/nKKRXw0-yiU/s1600/homero_456_336.jpg",
-        name:"Bart",
-        user_id:"Bart.Github"
-    }
+
+let data = localStorage.getItem("post")
+localStorage.clear() //clean the localstorage
+let value = JSON.parse(data)
+if (value){
+    fillForm(value)
 }
 
-// https://mkt.trato.io/wp-content/uploads/2017/04/imagen-blog-14-1.jpeg
-//Aprendiendo javascript a golpes
-//Aqui andamos aprendiendo porque el niño quería programar
+function fillForm(value){
+    let {cover_image,title,hashtags,post_text}=value
+    
+    //**********************************************carga imagen
+    $("#image-url").val(cover_image)
+
+    //**********************************************carga titulo y post
+    cont=0
+    let textArea=$("textarea")
+    for (const txt of textArea){
+        switch(cont){
+            case 0:
+                txt.value=title
+                break
+            case 1:
+                txt.value=post_text
+                break
+        }
+        cont++
+    }
+    
+    //**********************************************carga los hashtags
+    hashtags.forEach((valor)=>{
+        let tTable = $("#hashtagsSelected")
+            let tdCell=createNode("td",valor)
+            tdCell.classList.add("hashValue", "mr-3")
+        $(tTable).append(tdCell)
+    })
+}
+//**************metodos para actualizar
+function preUpdatePost(value){
+    let {id}=value,valHash={},val=0,cont=0
+    
+    //**********************************************verifica imagen
+    let img=$("#image-url").val()
+    if(img)
+        value.image=img
+    else
+        val++
+    //**********************************************carga los hashtags seleccionados
+    let hash=$(".hashValue")
+    
+    if (Object.keys(hash).length >2){
+        for (const ts of hash){
+            let txt=ts.textContent
+            valHash={...valHash,[cont]:txt}
+            cont++
+        }
+        value.hashtags=valHash
+    }
+    else val++
+
+    //**********************************************carga titulo y post
+    cont=0
+    let textArea=$("textarea")
+    for (const txt of textArea){
+        if (txt.value){
+            switch(cont){
+                case 0:
+                    value.title=txt.value
+                    break
+                case 1:
+                    value.post_text=txt.value
+                    break
+            }
+        }
+        else
+            val++
+        cont++
+    }
+
+    val>0?alert("Todos los campos son requeridos"):updatePost(id,value)
+}
+
+function updatePost(idPost,objectPost){
+    $.ajax({
+        method:"PATCH",
+        url:`https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/${idPost}.json`,
+        data:JSON.stringify(objectPost),
+        success:(response)=>{
+            console.log(response)
+        },
+        error:(error)=>{
+            console.log(error)
+        },
+        async:false
+    })
+}
+
+//**************metodos para crear
 function preCargarPost(){
     let objectPost={}, valHash={}
     let image,val=0, cont=0
@@ -42,7 +118,7 @@ function preCargarPost(){
     objectPost={...objectPost,"data_created":date}
     
 
-    //**********************************************carga los hashtagas seleccionados
+    //**********************************************carga los hashtags seleccionados
     let hash=$(".hashValue")
     
     if (Object.keys(hash).length >2){
@@ -81,8 +157,8 @@ function preCargarPost(){
         user_id:"homero.github"
     }
     objectPost={...objectPost,"usuario":usuario,"coments":0,"likes":0}
-    console.log("objeto a mostrar",objectPost)
-    console.log("valor contador",val)
+    // console.log("objeto a mostrar",objectPost)
+    // console.log("valor contador",val)
     val>0?alert("Todos los campos son requeridos"):createPost(objectPost)
 }
 
@@ -105,37 +181,7 @@ function createPost(postObject){
     return resp
 }
 
-function updatePost(idPost,objectPost){
-    $.ajax({
-        method:"PATCH",
-        url:`https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/${idPost}.json`,
-        data:JSON.stringify(objectPost),
-        success:(response)=>{
-            console.log(response)
-        },
-        error:(error)=>{
-            console.log(error)
-        },
-        async:false
-    })
-}
 
-function deletePost(idPost){
-    $.ajax({
-        method:"DELETE",
-        url:`https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/${idPost}.json`,
-        data:idPost,
-        success:(response)=>{
-            // console.log("El registro fue eliminado correctamente")
-            console.log(response)
-            
-        },
-        error:(error)=>{
-            console.log(error)
-        },
-        async:false
-    })
-}
 
 function createNode(typeElement, text){
     let node = document.createElement(typeElement)
@@ -177,7 +223,14 @@ function cargaHashtags(){
 
 }
 
-$("#publish-button").click(()=>preCargarPost())
+$("#publish-button").click(()=>{
+    if (value){        
+        preUpdatePost(value)
+    }
+    else{        
+        preCargarPost()
+    }
+})
 
 $("#tag-input").focus(()=>cargaHashtags())
 
@@ -185,9 +238,9 @@ $("#tag-input").change(function(){
     let tTable = $("#hashtagsSelected")
     let valor=$("#tag-input").val()
     
-    let tdRow=createNode("td",valor)
-    tdRow.classList.add("hashValue", "mr-3")
-    $(tTable).append(tdRow)
+    let tdCell=createNode("td",valor)
+    tdCell.classList.add("hashValue", "mr-3")
+    $(tTable).append(tdCell)
     $("#tag-input").val("")
 })
 

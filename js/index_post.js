@@ -8,9 +8,28 @@ function createNode(typeElement, text){
     return node
 }
 
-console.log(value)
+function saveData(objectPost,goLocation){
+    localStorage.clear()
+    localStorage.setItem("post",JSON.stringify(objectPost))
+    location.href=goLocation
+}
 
-printPost()
+function deletePost(idPost){
+    $.ajax({
+        method:"DELETE",
+        url:`https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/${idPost}.json`,
+        data:idPost,
+        success:(response)=>{
+            
+            console.log(response)
+            location.href="/"
+        },
+        error:(error)=>{
+            console.log(error)
+        },
+        async:false
+    })
+}
 
 function printPost(){
     let data=value,cont=0
@@ -21,13 +40,13 @@ function printPost(){
         tBody.removeChild(tBody.lastElementChild)
     }
     
-    let {coments,id,cover_image,data_created,likes,title,usuario,hashtags}=data
+    let {post_text,id,cover_image,data_created,title,usuario,hashtags}=data
     
     let divRow=document.createElement("div")
     divRow.classList.add("row")
 
         let divCard=document.createElement("div")
-        divCard.classList.add("card", "my-2")
+        divCard.classList.add("card")
             
             let imgCard=document.createElement("img")
             imgCard.classList.add("card-img-top", "col-12", "p-2")
@@ -82,16 +101,51 @@ function printPost(){
                             name.classList.add("col-3","hashtagsPosts","text-center")
                             divRowTitle.appendChild(name)
                         })
+
+                    let divRowButtons=document.createElement("div")
+                    divRowButtons.classList.add("row" )
+
+                        let divButton=document.createElement("div")
+                        divButton.classList.add("col-12", "d-flex","flex-row","justify-content-end")
+                            
+                            let aUpdate=document.createElement("a")
+                                let buttonUpdate=createNode("button","Modificar")
+                                buttonUpdate.classList.add("btn","btn-warning","mx-2")
+                                
+                                buttonUpdate.onclick=()=>{saveData(data,"newPost.html")}
+
+                            aUpdate.appendChild(buttonUpdate)
+                        divButton.appendChild(aUpdate)
+
+                        let aDelete=document.createElement("a")
+                            let buttonDelete=createNode("button","Eliminar")
+                            buttonDelete.classList.add("btn","btn-danger","mx-2")
+                            buttonDelete.onclick=()=>deletePost(id)
+
+                            
+                            // aDelete.href="/"
+                            aDelete.appendChild(buttonDelete)
+                        divButton.appendChild(aDelete)
+                    divRowButtons.appendChild(divButton)
                 divTitle.appendChild(divRowTitle)
-                
-                let divText=createNode("div",)
-                divText.classList.add("container")
-
-
+                divTitle.appendChild(divRowButtons)
+        
         divCard.appendChild(divUser)
         divCard.appendChild(divTitle)
 
+
+        
+        let divTextPost=document.createElement("div")
+        divTextPost.classList.add("card", "my-1")
+            let divText=createNode("div",post_text)
+            divText.classList.add("container")
+
+        divTextPost.appendChild(divText)
+
     divRow.appendChild(divCard)
+    divRow.appendChild(divTextPost)
     tBody.appendChild(divRow)
         cont++
 }
+
+printPost()
