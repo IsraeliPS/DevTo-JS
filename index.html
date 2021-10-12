@@ -34,7 +34,7 @@
                         <img class="img-navbar rounded mt-2" id="logo" src="https://res.cloudinary.com/practicaldev/image/fetch/s--R9qwOwpC--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/78hs31fax49uwy6kbxyw.png">
                         </a>
                         <form class="form-block d-none d-md-block col-md-11 col-lg-12 m-2">
-                        <input class="form-control mr-sm-0 rounded" type="search" placeholder="Search..." aria-label="Search">
+                            <input id = "search" class="rounded border border-secondary" type="text" placeholder="Search">
                         </form>
                     </div>
                     <div class="nav col-11 col-md-6 col-lg-6 justify-content-sm-end justify-content-end align-items-center flex-nowrap">
@@ -229,17 +229,30 @@
             <!-- **********************************************************principal de Posts -->
             <div class="col-12 col-md-9 col-lg-7">
                 <!-- ****************************************************************************menu superior de los posts -->
-                <div class="d-none d-sm-block">
-                    <div class="d-flex justify-content-center">
-                    <div class="crece m-2 p-2"><strong> Post </strong> </div>
-                    <div class="navbox bottom-line m-2 p-2">Feed</div>
-                    <div class="navbox m-2 p-2">Week</div>
-                    <div class="navbox m-2 p-2">Month</div>
-                    <div class="navbox m-2 p-2">Year</div>
-                    <div class="navbox m-2 p-2">Infinity</div>
-                    <div class="navbox m-2 p-2">Latest</div>
+                <nav class="navbar navbar-expand-md align-items-center justify-content-between ">
+                    <div><span class="navbar-brand">Posts </span> </div>
+    
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
+                        <ul class="navbar-nav  ">
+                            <li class="nav-item active"> <a class="nav-link" href="#">Feed <span
+                                        class="sr-only">(current)</span></a> </li>
+                            <li class="nav-item"> <a  id="week" class="nav-link" href="#">Week</a> </li>
+                            <li class="nav-item"> <a  id="month"class="nav-link" href="#">Month</a> </li>
+                            <li  class="nav-item"> <a id="year" class="nav-link" href="#">Year</a> </li>
+    
+                            <li class="nav-item"> <a  id="infinity" class="nav-link" href="#">Infinity</a> </li>
+                        </ul>
                     </div>
-                </div>
+                    <form class="form d-md-none">              
+                        <select id="fechas" class="form-control">
+                            <option value="">Feed </option>
+                            <option value="week">Week</option>
+                            <option value="month">Month</option>
+                            <option value="year">Year</option>
+                            <option value="infinity">Infinity</option>
+                        </select>
+                    </form>
+                </nav>
 
                 <div class="container j_container_principal mt-3">
                     <div class="row">
@@ -308,7 +321,7 @@
                     <div class="row">
                         <div class="card j_primer_post">
                             <div class="container">
-                                <div class="row">
+                                <div class="row" id="wrapperCards" >
                                     <img class="col-2 rounded-pill" src="https://res.cloudinary.com/practicaldev/image/fetch/s--a7qicupw--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/389568/4495a4a0-202f-4c66-8cec-003bbf8dc66d.jpg" alt="avatar">
                                     <div class="col-8">
                                         <h5 class="card-title j_author ">
