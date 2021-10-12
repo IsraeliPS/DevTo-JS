@@ -178,6 +178,15 @@ li {
   list-style: none;
 }
 
+.closeHashtag {
+  float: right;
+  background-color: #64707D;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 10px;
+  border-radius: 30%;
+}
+
 .hashtagsPosts {
   color: #64707D;
   font-size: 12px;

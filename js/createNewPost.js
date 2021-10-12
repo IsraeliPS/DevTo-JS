@@ -32,8 +32,18 @@ function fillForm(value){
         let tTable = $("#hashtagsSelected")
             let tdCell=createNode("td",valor)
             tdCell.classList.add("hashValue", "mr-3")
+                let tdSpan=createNode("span","x")
+                tdSpan.classList.add("closeHashtag")
+                tdSpan.setAttribute("onclick","this.removeChild(this.parentNode);return false;")
+                tdCell.appendChild(tdSpan)
+            // <span class="boton" onclick="cerraranuncio('primeranuncio')">x</span>
         $(tTable).append(tdCell)
     })
+}
+
+function quitarTD(valor){
+    this.parentNode.parentNode.parentNode
+        .removeChild(this.parentNode.parentNode)
 }
 //**************metodos para actualizar
 function preUpdatePost(value){
@@ -227,7 +237,8 @@ $("#publish-button").click(()=>{
     if (value){        
         preUpdatePost(value)
     }
-    else{        
+    else{       
+        localStorage.clear() //clean the localstorage 
         preCargarPost()
     }
 })
