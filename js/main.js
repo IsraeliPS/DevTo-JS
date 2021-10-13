@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 14be4cf9d50b69ccae2816856ca9c0170322a62c
 const getPost = () => {
     let usersCollection;
     $.ajax({
@@ -16,7 +19,7 @@ const getPost = () => {
 }
 let allPosts = getPost()
 //console.log(allPosts)
-let arrayPosts = (Object.values(allPosts));
+// let arrayPosts = (Object.values(allPosts));
 //console.log(arrayPosts)
 
 function convertArray(postObject) {
@@ -32,30 +35,31 @@ function convertArray(postObject) {
     return arrayPost
 }
 let losPosts = (convertArray(allPosts))
-console.log(losPosts)
-
-
-
 
 
 //----------------------------------------------------FITERS----------------------------------------------------------
-const filterWeek = (arrayPost) => {
+const filterWeek = (losPosts) => {
+    console.log(losPosts)
+    let {data_created}=losPosts
     let fecha = new Date() //Genera la fecha del dia de hoy
     let mes = (fecha.getMonth() + 1)
     let hoy = fecha.getDate()
     let finde = (hoy - 7)
-    arrayPost = arrayPost.map(post => {
-        return { ...post, fechaConvertida: post.fecha.split('-') }
+    losPosts = losPosts.map(post => {
+        console.log(post)
+        let fecha= data_created.split('-')
+        return { ...post, fechaConvertida: fecha}
     })
-    arrayPost = arrayPost.filter(post => {
+    losPosts = losPosts.filter(post => {
         return Number(post.fechaConvertida[1]) === mes
             && Number(post.fechaConvertida[0]) >= finde
             && Number(post.fechaConvertida[0]) <= hoy
     })
-    drawPost(arrayPost)
+    //drawPost(losPosts)
 }
 
-const filterMonth = (arrayPost) => {
+
+const filterMonth = (losPosts) => {
     arrayPost = arrayPost.map(post => {
         return { ...post, fechaConvertida: post.fecha.split('-') }
     })
@@ -63,7 +67,7 @@ const filterMonth = (arrayPost) => {
     drawPost(arrayPost)
 }
 
-const filterYear = (arrayPost) => {
+const filterYear = (losPosts) => {
     arrayPost = arrayPost.map(post => {
         return { ...post, fechaConvertida: post.fecha.split('-') }
     })
@@ -94,7 +98,7 @@ $("#fechas").change(() => {
 
 document.querySelector('#week').addEventListener('click', (e) => {
     e.preventDefault()
-    filterWeek(getPost())
+    filterWeek(losPosts)
 })
 
 $('#month').click((e) => {
@@ -140,7 +144,10 @@ inputSearch.addEventListener("keyup", (e) => {
   }
   let listaFiltradaWord = listByWord(arrayPosts)
   console.log(listaFiltradaWord)*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> 14be4cf9d50b69ccae2816856ca9c0170322a62c
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("mySidebar").style.overflow="show";
@@ -330,4 +337,3 @@ function printPost(){
 }
 
 printPost()
->>>>>>> main
