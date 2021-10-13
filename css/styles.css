@@ -61,8 +61,8 @@ COLORES
 }
 
 #main {
-  -webkit-transition: margin-left .5s;
-  transition: margin-left .5s;
+  -webkit-transition: margin-left 0.5s;
+  transition: margin-left 0.5s;
   padding: 16px;
 }
 
@@ -78,18 +78,18 @@ COLORES
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 235px;
   min-width: 235px;
-  background-color: #FFF;
+  background-color: #fff;
   display: none;
   font-size: 16px;
   background-color: transparent;
@@ -107,11 +107,11 @@ COLORES
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .myTagsvg:hover {
@@ -126,14 +126,14 @@ COLORES
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
   -webkit-box-pack: stretch;
-      -ms-flex-pack: stretch;
-          justify-content: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
 }
 
 .lista li {
@@ -153,8 +153,8 @@ COLORES
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .social-media-icons img {
@@ -171,7 +171,7 @@ COLORES
 COLORES 
 *****************/
 .create-post-inner {
-  background-color: #EEF0F1;
+  background-color: #eef0f1;
 }
 
 li {
@@ -188,7 +188,7 @@ li {
 }
 
 .hashtagsPosts {
-  color: #64707D;
+  color: #64707d;
   font-size: 12px;
 }
 
@@ -197,3 +197,12 @@ body {
   margin: 0 auto;
 }
 /*# sourceMappingURL=styles.css.map */
+
+#h-heart:hover {
+  background-color: rgb(197, 207, 207);
+}
+
+#h-heart:focus {
+  transform: perspective(2, 0.5);
+  background-color: rgb(216, 57, 57);
+}
