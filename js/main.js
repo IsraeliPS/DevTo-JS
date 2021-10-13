@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const getPost = () => {
     let usersCollection;
     $.ajax({
@@ -140,7 +140,7 @@ inputSearch.addEventListener("keyup", (e) => {
   }
   let listaFiltradaWord = listByWord(arrayPosts)
   console.log(listaFiltradaWord)*/
-=======
+
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("mySidebar").style.overflow="show";
