@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 14be4cf9d50b69ccae2816856ca9c0170322a62c
 const getPost = () => {
     let usersCollection;
     $.ajax({
@@ -20,134 +16,16 @@ const getPost = () => {
 let allPosts = getPost()
 //console.log(allPosts)
 // let arrayPosts = (Object.values(allPosts));
-//console.log(arrayPosts)
-
-function convertArray(postObject) {
-    let arrayPost = []
-    for (const key in postObject)
-      //  console.log(key)
-    {
-        let postData = postObject[key]
-        postData = { ...postData, id: key }
-        arrayPost = [...arrayPost,
-            postData]
-    }
-    return arrayPost
-}
-let losPosts = (convertArray(allPosts))
+console.log(arrayPosts)
 
 
 //----------------------------------------------------FITERS----------------------------------------------------------
-const filterWeek = (losPosts) => {
-    console.log(losPosts)
-    let {data_created}=losPosts
-    let fecha = new Date() //Genera la fecha del dia de hoy
-    let mes = (fecha.getMonth() + 1)
-    let hoy = fecha.getDate()
-    let finde = (hoy - 7)
-    losPosts = losPosts.map(post => {
-        console.log(post)
-        let fecha= data_created.split('-')
-        return { ...post, fechaConvertida: fecha}
-    })
-    losPosts = losPosts.filter(post => {
-        return Number(post.fechaConvertida[1]) === mes
-            && Number(post.fechaConvertida[0]) >= finde
-            && Number(post.fechaConvertida[0]) <= hoy
-    })
-    //drawPost(losPosts)
-}
-
-
-const filterMonth = (losPosts) => {
-    arrayPost = arrayPost.map(post => {
-        return { ...post, fechaConvertida: post.fecha.split('-') }
-    })
-    arrayPost = arrayPost.filter(post => Number(post.fechaConvertida[1]) === new Date().getMonth() + 1)
-    drawPost(arrayPost)
-}
-
-const filterYear = (losPosts) => {
-    arrayPost = arrayPost.map(post => {
-        return { ...post, fechaConvertida: post.fecha.split('-') }
-    })
-    arrayPost = arrayPost.filter(post => Number(post.fechaConvertida[2]) === new Date().getFullYear())
-    drawPost(arrayPost)
-}
-
-$("#fechas").change(() => {
-    let select = $("#fechas option:selected").val()
-    console.log(select)
-    switch (select) {
-        case "week":
-            filterWeek(getPost())
-            break;
-        case "month":
-            filterMonth(getPost())
-            break;
-        case "year":
-            filterYear(getPost())
-            break;
-        case "infinity":
-            drawPost(getPost())
-            break;
-        default:
-            break;
-    }
-})
-
-document.querySelector('#week').addEventListener('click', (e) => {
-    e.preventDefault()
-    filterWeek(losPosts)
-})
-
-$('#month').click((e) => {
-    e.preventDefault()
-    filterMonth(getPost())
-})
-
-$('#infinity').click((e) => {
-    e.preventDefault()
-    drawPost(getPost())
-})
-
-document.querySelector('#year').addEventListener('click', (e) => {
-    e.preventDefault()
-    filterYear(getPost())
-})
-
-
 
 
 //------------------------------buscar la palabra vs tittle--------------------------------------------------
-inputSearch = document.getElementById("search")
-inputSearch.addEventListener("keyup", (e) => {
-    let valorInput = inputSearch.value.toUpperCase()
-    let resultadoBusqueda = losPosts.filter(post => {
-        return post.title.toUpperCase().includes(valorInput)
-    })
-    printPost (resultadoBusqueda)
-    console.log(resultadoBusqueda)
-})
 
 
-
-
-
-/*const listByWord = arrayPosts => {
-    let busqueda = arrayPosts.reduce((accum, dato) => {
-      return dato.title.match("html")   //hacerla dinamica
-        ? [...accum, dato]
-        : accum
-    }, [])
-    return busqueda
-  }
-  let listaFiltradaWord = listByWord(arrayPosts)
-  console.log(listaFiltradaWord)*/
-<<<<<<< HEAD
-
-=======
->>>>>>> 14be4cf9d50b69ccae2816856ca9c0170322a62c
+  
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("mySidebar").style.overflow="show";
