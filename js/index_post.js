@@ -1,257 +1,215 @@
+let data = localStorage.getItem("post");
+localStorage.clear(); //clean the localstorage
+let value = JSON.parse(data);
 
-let data = localStorage.getItem("post")
-localStorage.clear() //clean the localstorage
-let value = JSON.parse(data)
-if (value){
-    fillForm(value)
+function createNode(typeElement, text) {
+  let node = document.createElement(typeElement);
+  node.textContent = text;
+  return node;
 }
 
-function fillForm(value){
-    let {id,userName,image,title,tags,dateCreation,textContainer}=value
-    // let {cover_image,title,hashtags,post_text}=value
-    console.log(tags)
-    //**********************************************carga imagen
-    $("#image-url").val(image)
-
-    //**********************************************carga titulo y post
-    cont=0
-    let textArea=$("textarea")
-    for (const txt of textArea){
-        switch(cont){
-            case 0:
-                txt.value=title
-                break
-            case 1:
-                txt.value=textContainer
-                break
-        }
-        cont++
-    }
-    
-    //**********************************************carga los hashtags
-    tags.forEach((valor)=>{
-        let tTable = $("#hashtagsSelected")
-            let tdCell=createNode("td",valor)
-            tdCell.classList.add("hashValue", "mr-3")
-                // let tdSpan=createNode("span","x")
-                // tdSpan.classList.add("closeHashtag")
-                // tdSpan.setAttribute("onclick","this.removeChild(this.parentNode);return false;")
-                // tdCell.appendChild(tdSpan)
-            // <span class="boton" onclick="cerraranuncio('primeranuncio')">x</span>
-        $(tTable).append(tdCell)
-    })
+function saveData(objectPost, goLocation) {
+  localStorage.clear();
+  localStorage.setItem("post", JSON.stringify(objectPost));
+  location.href = goLocation;
 }
 
-function quitarTD(valor){
-    this.parentNode.parentNode.parentNode
-        .removeChild(this.parentNode.parentNode)
-}
-//**************metodos para actualizar
-function preUpdatePost(value){
-    let {id}=value,valHash={},val=0,cont=0
-    
-    //**********************************************verifica imagen
-    let img=$("#image-url").val()
-    if(img)
-        value.image=img
-    else
-        val++
-    //**********************************************carga los hashtags seleccionados
-    let hash=$(".hashValue")
-    
-    if (Object.keys(hash).length >2){
-        for (const ts of hash){
-            let txt=ts.textContent
-            valHash={...valHash,[cont]:txt}
-            cont++
-        }
-        value.hashtags=valHash
-    }
-    else val++
-
-    //**********************************************carga titulo y post
-    cont=0
-    let textArea=$("textarea")
-    for (const txt of textArea){
-        if (txt.value){
-            switch(cont){
-                case 0:
-                    value.title=txt.value
-                    break
-                case 1:
-                    value.textContainer=txt.value
-                    break
-            }
-        }
-        else
-            val++
-        cont++
-    }
-
-    val>0?alert("Todos los campos son requeridos"):updatePost(id,value)
+function deletePost(idPost) {
+  $.ajax({
+    method: "DELETE",
+    url: `https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/${idPost}.json`,
+    data: idPost,
+    success: (response) => {
+      console.log(response);
+      location.href = "/";
+    },
+    error: (error) => {
+      console.log(error);
+    },
+    async: false,
+  });
 }
 
-function updatePost(idPost,objectPost){
-    $.ajax({
-        method:"PATCH",
-        url:`http://localhost:8000/posts/${idPost}`,
-        data:JSON.stringify(objectPost),
-        success:(response)=>{
-            console.log(response)
-        },
-        error:(error)=>{
-            console.log(error)
-        },
-        async:false
-    })
+function printPost() {
+  let data = value,
+    cont = 0;
+
+  let tBody = document.getElementById("list-posts");
+
+  while (tBody.lastElementChild) {
+    tBody.removeChild(tBody.lastElementChild);
+  }
+
+  let { post_text, id, cover_image, data_created, title, usuario, hashtags } =
+    data;
+
+  let divRow = document.createElement("div");
+  divRow.classList.add("row");
+
+  let divCard = document.createElement("div");
+  divCard.classList.add("card");
+
+  let imgCard = document.createElement("img");
+  imgCard.classList.add("card-img-top", "col-12", "p-2");
+  imgCard.src = cover_image;
+  imgCard.alt = "principal_Image";
+  divCard.appendChild(imgCard);
+
+  //*************inicia */
+
+  let divUser = document.createElement("div");
+  divUser.classList.add("container", "p-2", "my-2");
+
+  let divRowUser = document.createElement("div");
+  divRowUser.classList.add("row");
+
+  let imgAvatar = document.createElement("img");
+  imgAvatar.classList.add("col-2", "rounded-pill");
+  imgAvatar.src = usuario.img;
+  imgAvatar.alt = "avatar";
+
+  let divUserName = document.createElement("div");
+  divUserName.classList.add("col-8");
+
+  let h5User = createNode("h5", usuario.name);
+  h5User.classList.add("card-title");
+
+  let h6Data = createNode("h6", data_created);
+  h6Data.classList.add("card-subtitle", "mb-2", "text-muted");
+
+  divUserName.appendChild(h5User);
+  divUserName.appendChild(h6Data);
+
+  divRowUser.appendChild(imgAvatar);
+  divRowUser.appendChild(divUserName);
+  divUser.appendChild(divRowUser);
+
+  let divTitle = document.createElement("div");
+  divTitle.classList.add("container");
+
+  let divRowTitle = document.createElement("div");
+  divRowTitle.classList.add("row");
+
+  let h3Title = document.createElement("h3");
+  h3Title.classList.add("col-12");
+
+  let aTitle = createNode("a", title);
+  divRowTitle.appendChild(h3Title);
+
+  h3Title.appendChild(aTitle);
+  hashtags.forEach((item) => {
+    let name = createNode("p", `#${item}`);
+    name.classList.add("col-3", "hashtagsPosts", "text-center");
+    divRowTitle.appendChild(name);
+  });
+
+  let divRowButtons = document.createElement("div");
+  divRowButtons.classList.add("row");
+
+  let divButton = document.createElement("div");
+  divButton.classList.add(
+    "col-12",
+    "d-flex",
+    "flex-row",
+    "justify-content-end"
+  );
+
+  let aUpdate = document.createElement("a");
+  let buttonUpdate = createNode("button", "Modificar");
+  buttonUpdate.classList.add("btn", "btn-warning", "mx-2");
+
+  buttonUpdate.onclick = () => {
+    saveData(data, "newPost.html");
+  };
+
+  aUpdate.appendChild(buttonUpdate);
+  divButton.appendChild(aUpdate);
+
+  let aDelete = document.createElement("a");
+  let buttonDelete = createNode("button", "Eliminar");
+  buttonDelete.classList.add("btn", "btn-danger", "mx-2");
+  buttonDelete.onclick = () => deletePost(id);
+
+  // aDelete.href="/"
+  aDelete.appendChild(buttonDelete);
+  divButton.appendChild(aDelete);
+  divRowButtons.appendChild(divButton);
+  divTitle.appendChild(divRowTitle);
+  divTitle.appendChild(divRowButtons);
+
+  divCard.appendChild(divUser);
+  divCard.appendChild(divTitle);
+
+  let divTextPost = document.createElement("div");
+  divTextPost.classList.add("card", "my-1");
+  let divText = createNode("div", post_text);
+  divText.classList.add("container");
+
+  divTextPost.appendChild(divText);
+
+  divRow.appendChild(divCard);
+  divRow.appendChild(divTextPost);
+  tBody.appendChild(divRow);
+  cont++;
 }
 
-//**************metodos para crear
-function preCargarPost(){
-    let objectPost={}, valHash={}
-    let image,val=0, cont=0
-    
-    //**********************************************verifica imagen
-    image=$("#image-url").val()
-    if(image){
-        objectPost={...objectPost,"cover_image":image}
-    }
-    else{
-        val++
-    }
-    
-    //**********************************************carga fecha
-    let dateNow=new Date()
-    const year = dateNow.getFullYear();
-    const day = dateNow.getDate();
-    const month = dateNow.getMonth() + 1; 
-    let date=`${day}-${month}-${year}`
-    objectPost={...objectPost,"data_created":date}
-    
+printPost();
 
-    //**********************************************carga los hashtags seleccionados
-    let hash=$(".hashValue")
-    
-    if (Object.keys(hash).length >2){
-        for (const ts of hash){
-            let txt=ts.textContent
-            valHash={...valHash,[cont]:txt}
-            cont++
-        }
-        objectPost={...objectPost,"hashtags":valHash}
-    }
-    else val++
+// Agregar likes al post - PATCH
+const addToReactionCount = (reactionPost, newCount) => {
+  console.log(reactionPost, newCount);
+  $.ajax({
+    method: "PATCH",
+    url: `https://proyecto-devto-default-rtdb.firebaseio.com/Posts/posts/${reactionPost}.json`,
+    data: JSON.stringify(newCount),
+    success: (response) => {},
+    error: (error) => {},
+  });
+};
 
-    //**********************************************carga titulo y post
-    cont=0
-    let textArea=$("textarea")
-    for (const txt of textArea){
-        if (txt.value){
-            switch(cont){
-                case 0:
-                    objectPost={...objectPost,"title":txt.value}
-                    break
-                case 1:
-                    objectPost={...objectPost,"post_text":txt.value}
-                    break
-            }
-        }
-        else
-            val++
-        cont++
-    }
-    
-    //**********************************************carga usuario, cometarios y likes
-    let usuario={
-        img:"https://3.bp.blogspot.com/-JfL1o7oSnKI/VmodObHF9cI/AAAAAAAABLY/nKKRXw0-yiU/s1600/homero_456_336.jpg",
-        name:"homero",
-        user_id:"homero.github"
-    }
-    objectPost={...objectPost,"usuario":usuario,"coments":0,"likes":0}
-    // console.log("objeto a mostrar",objectPost)
-    // console.log("valor contador",val)
-    val>0?alert("Todos los campos son requeridos"):createPost(objectPost)
-}
+//Boton de reacciones
 
-function createPost(postObject){
-    let resp
+//Increase Likes
 
-    $.ajax({
-        method:"POST",
-        url:"http://localhost:8000/posts/",
-        data:JSON.stringify(postObject),
-        success:(response)=>{
-            resp=response
-            console.log(response)
-        },
-        error:(error)=>{
-            console.log(error)
-        },
-        async:false
-    })
-    return resp
-}
+let counter = document.getElementById("like_count");
+let likeButton = document.getElementById("reactions-btn");
 
+let likeCount = 0;
 
+likeButton.addEventListener("click", () => {
+  let { likes, id } = value;
+  likeCount += parseInt(likes);
+  console.log("contador", likeCount);
+  console.log("click");
+  likeCount++;
+  counter.textContent = likeCount;
+  value.likes = parseInt(likeCount);
+  addToReactionCount(id, value);
+  likeCount = 0;
+});
 
-function createNode(typeElement, text){
-    let node = document.createElement(typeElement)
-    node.textContent = text
-    return node
-}
+// Increase Star
 
-function cargaHashtags(){
-    let hashObject
-    let arrayHash=[]
-    $.ajax({
-        method:"GET",
-        url:"http://localhost:8000/posts/",
-        success:response=>{
-            hashObject=response
-        },
-        error:error=>{
-            console.log(error)
-        },
-        async:false
-    })
-    
-    for (const value in hashObject) {
-        arrayHash = [...arrayHash, hashObject[value]]
-    }
+let starCounter = document.getElementById("star_count");
+let starButton = document.getElementById("star-btn");
 
-    
-    let tDatalist = document.getElementById("tagsInput")
-        
-    while (tDatalist.lastElementChild){
-        tDatalist.removeChild(tDatalist.lastElementChild)
-    }  
+let starCount = 0;
 
-    arrayHash.forEach((index)=>{
-        let opt=document.createElement("option")
-        opt.value=index
-        tDatalist.appendChild(opt)
-    })
+starButton.addEventListener("click", () => {
+  console.log("click");
+  starCount++;
+  starCounter.textContent = starCount;
+});
 
-}
+// Increase comments
 
-$("#publish-button").click(()=>{
-    if (value){        
-        preUpdatePost(value)
-    }
-    else{       
-        localStorage.clear() //clean the localstorage 
-        preCargarPost()
-    }
-})
+let comCounter = document.getElementById("com_count");
+let comButton = document.getElementById("com-btn");
 
-$("#tag-input").focus(()=>cargaHashtags())
+let comCount = 0;
 
-$("#tag-input").change(function(){
-    let tTable = $("#hashtagsSelected")
-    let valor=$("#tag-input").val()
-    
-    let tdCell=createNode("td",valor)
-    tdCell.classList.add("hashValue", "mr-3")
-    $(tTable).append(tdCell)
-    $("#tag-input").val("")
-})
+comButton.addEventListener("click", () => {
+  console.log("click");
+  comCount++;
+  comCounter.textContent = comCount;
+});

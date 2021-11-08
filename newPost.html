@@ -10,6 +10,20 @@
     
 </head>
 <body>
+    <div class="modal modalBody" id="modal1" data-animation="slideInOutLeft">
+        <div class="modal-dialog">
+          <header class="modal-header">
+              Registro almacenado
+            <button class="close-modal modalButton" aria-label="close modal" data-close>
+              ✕  
+            </button>
+          </header>
+          <section class="modal-content">
+            <p id="textModal"></p>
+          </section>
+        </div>
+    </div>
+
     <main class="container-fluid mt-0">
         <form class="container create-post-inner">
             <div class="row header-nav-container">
@@ -27,7 +41,7 @@
 							</a>
                         </span>
                         <div class="page-title-wrapper ml-4">
-                            <span><p>Create Post</p></span>
+                            <span id="newPost"></span>
                         </div>
                     </div>
                     <div class="buttons-close d-flex">

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEV Community 👩‍💻👨‍💻</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+        crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
+    <script src="https://kit.fontawesome.com/08983b0b1f.js" crossorigin="anonymous" ></script>
+
+    <!-- w3 icons   -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
+
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <!-- ***********************************************************************barra superior -->
+    <nav class=" border-4 border-bottom mb-1 sticky navbar-light">
+        <div class="container ">
+        <div class="row">
+            <div class="nav col-1 col-md-5 col-lg-6 justify-content-sm-start justify-content-start align-items-center flex-nowrap">
+                <button onclick="openNav()" class="openbtn d-sm-block d-md-none mt-3" role="button">
+                <span class="navbar-toggler-icon ml-1"></span>
+                </button>
+                <a href="#">
+                <img class="img-navbar rounded mt-2" id="logo" src="https://res.cloudinary.com/practicaldev/image/fetch/s--R9qwOwpC--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/78hs31fax49uwy6kbxyw.png">
+                </a>
+                <form class="form-block d-none d-md-block col-md-11 col-lg-12 m-2">
+                <input class="form-control mr-sm-0 rounded" type="search" placeholder="Search..." aria-label="Search">
+                </form>
+            </div>
+            <div class="nav col-11 col-md-6 col-lg-6 justify-content-sm-end justify-content-end align-items-center flex-nowrap">
+                
+                <a class="nav-link active" href="./newPost.html">
+                    <button class="btn btn-primary createPost d-none d-md-block">
+                        Create Post
+                    </button>
+                </a>
+            </div>
+        </div>
+        </div>
+    </nav>
+    <!-- **********************************************************************************termina barra superior -->
+
+    <!-- **********************************************************************************card login -->
+    <div class="bodylogin">
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+              <h2 class="h2login active"> Sign In </h2>
+              <h2 class="h2login inactive underlineHover">Sign Up </h2>
+          
+              <!-- Icon -->
+              <div class="fadeIn first">
+                <img src="https://cdn-icons-png.flaticon.com/512/891/891397.png" id="icon" alt="User Icon" />
+              </div>
+          
+              <!-- Login Form -->
+              <form>
+                <input type="text" id="login" class="username fadeIn second" name="login" placeholder="login">
+                <input type="password" id="password" class="password fadeIn third" name="login" placeholder="password">
+                <input type="button" class="fadeIn fourth login" value="Log In">
+                <p id="notification"></p>
+              </form>
+          
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <a class="alogin underlineHover" href="#">Forgot Password?</a>
+              </div>
+          
+            </div>
+          </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="./js/login.js"></script>
+</body>
+</html>
